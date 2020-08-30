@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-allopen'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-allopen'
 
 // Allows classes to be automatically extended for mocking purposes.
 allOpen {
@@ -39,19 +40,29 @@ dependencies {
     implementation deps.app_compat
     implementation deps.constraint_layout
     implementation deps.core_ktx
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
+    implementation deps.hilt.android
+    implementation deps.hilt_viewmodel.lifecycle
     implementation deps.kotlin.stdlib
+    implementation deps.material_components
+    implementation deps.navigation.navigation_fragment_ktx
+    implementation deps.navigation.navigation_ui_ktx
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.rx.rxjava3
+    implementation deps.rx.rxkotlin
     implementation deps.timber
 
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
+    kapt deps.hilt.compiler
+    kapt deps.hilt_viewmodel.compiler
 
     testImplementation deps.junit
+
+    kaptAndroidTest deps.hilt_testing.hilt_android_compiler
+    kaptAndroidTest deps.hilt_testing.hilt_compiler
 
     androidTestImplementation deps.atsl.core
     androidTestImplementation deps.atsl.ext_junit
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
+    androidTestImplementation deps.hilt_testing.hilt_android_testing
 }

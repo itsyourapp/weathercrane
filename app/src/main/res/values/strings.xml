@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Weather Crane</string>
+
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="main_title">Weather Crane</string>
 </resources>
