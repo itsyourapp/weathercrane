@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 
 class MainViewModel
     @ViewModelInject constructor(
-        private val weatherInteractor: WeatherInteractor
+        weatherInteractor: WeatherInteractor
     ) : ViewModel() {
 
     private val _windSpeed = MutableLiveData<MainViewState>()
@@ -18,7 +18,7 @@ class MainViewModel
 
     init {
         weatherInteractor.fetchWindSpeed().subscribeBy(onSuccess = {
-            _windSpeed.postValue(WindSpeedUpdated(it.windSpeed))
+            _windSpeed.postValue(WindSpeedUpdated(it.wind.speed))
         })
     }
 }

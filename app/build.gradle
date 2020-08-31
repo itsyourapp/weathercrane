@@ -46,8 +46,10 @@ dependencies {
     implementation deps.material_components
     implementation deps.navigation.navigation_fragment_ktx
     implementation deps.navigation.navigation_ui_ktx
-    implementation deps.retrofit.runtime
+    implementation deps.retrofit.adapter
     implementation deps.retrofit.gson
+    implementation deps.retrofit.logger
+    implementation deps.retrofit.runtime
     implementation deps.rx.rxjava3
     implementation deps.rx.rxkotlin
     implementation deps.timber

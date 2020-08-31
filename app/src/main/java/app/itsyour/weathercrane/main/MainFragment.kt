@@ -11,7 +11,7 @@ import app.itsyour.weathercrane.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun updateWindSpeed(speed: Int) {
+    private fun updateWindSpeed(speed: Double) {
         windSpeed.text = speed.toString()
     }
 }
