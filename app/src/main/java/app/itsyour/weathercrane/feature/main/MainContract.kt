@@ -6,7 +6,6 @@ interface MainContract {
 
     sealed class Action {
         object Refresh : Action()
-        class SaveSettings(val city: String) : Action()
     }
 
     sealed class UiState {

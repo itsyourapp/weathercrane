@@ -18,12 +18,10 @@ class MainActivityViewModel
     fun action(action: MainContract.Action) {
         when (action) {
             is MainContract.Action.Refresh -> refresh()
-            else -> Unit
         }
     }
 
     private fun refresh() {
-        Timber.tag("itsyourapp").d("REFRESHED!")
         _actions.postValue(MainContract.Action.Refresh)
     }
 

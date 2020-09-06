@@ -22,9 +22,13 @@ class MainFragmentViewModel
     val uiStates: LiveData<MainContract.UiState> = _uiStates
 
     fun refresh() {
-        weatherInteractor.fetchCurrentWeather().subscribeBy(onSuccess = {
-            _uiStates.postValue(MainContract.UiState.CurrentWeather(it.wind.speed))
-        })
+        viewModelScope.launch {
+            settingsInteractor.readCity().collect { city ->
+                weatherInteractor.fetchCurrentWeather(city).subscribeBy(onSuccess = {
+                    _uiStates.postValue(MainContract.UiState.CurrentWeather(it.wind.speed))
+                })
+            }
+        }
     }
 
     fun fetchCity() {

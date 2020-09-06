@@ -7,6 +7,6 @@ import javax.inject.Inject
 class WeatherInteractor
     @Inject constructor(private val service: WeatherService) {
 
-    fun fetchCurrentWeather(): Single<CurrentWeatherResponse>
-            = service.currentWeather("ann arbor")
+    fun fetchCurrentWeather(cityName: String): Single<CurrentWeatherResponse>
+            = service.currentWeather(cityName)
 }
