@@ -1,4 +1,4 @@
-package app.itsyour.weathercrane.service.response
+package app.itsyour.weathercrane.service.openweathermap.response
 
 data class Main(
     val feels_like: Double,

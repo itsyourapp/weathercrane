@@ -1,16 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.MainActivity">
+    tools:context=".feature.main.MainActivity">
 
     <TextView
-        android:id="@+id/windSpeed"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/weather_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="32"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/wind_speed_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/wind_speed"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/weather_label"
+        app:layout_constraintTop_toBottomOf="@+id/weather_label" />
+
+    <TextView
+        android:id="@+id/wind_speed_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/wind_speed_label"
+        app:layout_constraintStart_toEndOf="@+id/wind_speed_label"
+        tools:text="7 MPH" />
+
+    <TextView
+        android:id="@+id/settings_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/settings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="@+id/weather_label"
+        app:layout_constraintTop_toBottomOf="@+id/wind_speed_label" />
+
+    <TextView
+        android:id="@+id/city_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/city"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/settings_label"
+        app:layout_constraintTop_toBottomOf="@+id/settings_label" />
+
+    <TextView
+        android:id="@+id/city_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@+id/city_label"
+        app:layout_constraintStart_toEndOf="@+id/city_label"
+        tools:text="Barrie" />
+
+    <EditText
+        android:id="@+id/city_update_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:autofillHints=".AUTOFILL_HINT_POSTAL_ADDRESS_LOCALITY"
+        android:ems="10"
+        android:hint="@string/city"
+        android:inputType="textPostalAddress"
+        android:text="@string/city"
+        app:layout_constraintBottom_toBottomOf="@+id/city_value"
+        app:layout_constraintStart_toEndOf="@+id/city_value"
+        app:layout_constraintTop_toTopOf="@+id/city_value"
+        tools:text="Barrie" />
+
+    <Button
+        android:id="@+id/city_update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:layout_constraintEnd_toEndOf="@+id/city_update_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/city_update_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/city_update_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

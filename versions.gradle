@@ -1,7 +1,7 @@
 ext.deps = [:]
 
 def versions = [:]
-versions.android_gradle_plugin = '4.0.1'
+versions.android_gradle_plugin = '4.2.0-alpha08'
 versions.appcompat = "1.2.0-alpha02"
 versions.atsl_core = "1.2.0"
 versions.atsl_junit = "1.1.1"
@@ -10,21 +10,30 @@ versions.atsl_runner = "1.2.0"
 versions.constraint_layout = "2.0.0-alpha2"
 versions.core_ktx = "1.1.0"
 versions.dagger = "2.16"
+versions.datastore = "1.0.0-alpha01"
 versions.hilt = "2.28-alpha"
 versions.hilt_jetpack = "1.0.0-alpha01"
 versions.junit = "4.12"
 versions.kotlin = "1.3.72"
 versions.material_components = "1.2.0"
+versions.multidex = "2.0.1"
 versions.navigation = "2.3.0"
+versions.preferences_ktx = "1.1.1"
+versions.protobuf = "0.8.13"
+versions.protobuf_lite = "3.0.0"
 versions.retrofit = "2.9.0"
 versions.retrofit_logger = "4.8.1"
+versions.rx_binding = "4.0.0"
+versions.rx_preferences = "2.0.1-beta1"
 versions.rxjava = "3.0.6"
 versions.rxkotlin = "3.0.0"
+versions.swipe_refresh = "1.1.0"
 versions.timber = "4.7.1"
+versions.viewmodel_ktx = "2.3.0-alpha07"
 ext.versions = versions
 
 def build_versions = [:]
-build_versions.min_sdk = 14
+build_versions.min_sdk = 21
 build_versions.compile_sdk = 29
 build_versions.target_sdk = 29
 build_versions.build_tools = "29.0.3"
@@ -37,7 +46,12 @@ deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.c
 deps.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
 deps.junit = "junit:junit:$versions.junit"
 deps.material_components = "com.google.android.material:material:$versions.material_components"
+deps.multidex = "androidx.multidex:multidex:$versions.multidex"
+deps.preferences_ktx = "androidx.preference:preference-ktx:$versions.preferences_ktx"
+deps.rx_preferences = "com.f2prateek.rx.preferences2:rx-preferences:$versions.rx_preferences"
+deps.swipe_refresh = "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swipe_refresh"
 deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewmodel_ktx"
 
 def atsl = [:]
 atsl.core = "androidx.test:core:$versions.atsl_core"
@@ -45,6 +59,11 @@ atsl.ext_junit = "androidx.test.ext:junit:$versions.atsl_junit"
 atsl.runner = "androidx.test:runner:$versions.atsl_runner"
 atsl.rules = "androidx.test:rules:$versions.atsl_rules"
 deps.atsl = atsl
+
+def datastore = [:]
+datastore.pref = "androidx.datastore:datastore-preferences:$versions.datastore"
+datastore.proto = "androidx.datastore:datastore-core:$versions.datastore"
+deps.datastore = datastore
 
 def hilt = [:]
 hilt.android = "com.google.dagger:hilt-android:$versions.hilt"
@@ -75,6 +94,13 @@ navigation.navigation_fragment_ktx = "androidx.navigation:navigation-fragment-kt
 navigation.navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
 deps.navigation = navigation
 
+def protobuf = [:]
+protobuf.gradle_plugin = "com.google.protobuf:protobuf-gradle-plugin:$versions.protobuf"
+protobuf.java_lite = "com.google.protobuf:protoc-gen-javalite:$versions.protobuf_lite"
+protobuf.lite = "com.google.protobuf:protobuf-lite:$versions.protobuf_lite"
+protobuf.protoc = "com.google.protobuf:protoc:$versions.protobuf_lite"
+deps.protobuf = protobuf
+
 def retrofit = [:]
 retrofit.adapter = "com.squareup.retrofit2:adapter-rxjava3:$versions.retrofit"
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
@@ -87,6 +113,13 @@ def rx = [:]
 rx.rxjava3 = "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 rx.rxkotlin = "io.reactivex.rxjava3:rxkotlin:$versions.rxkotlin"
 deps.rx = rx
+
+def rx_binding = [:]
+rx_binding.rx = "com.jakewharton.rxbinding4:rxbinding:$versions.rx_binding"
+rx_binding.core = "com.jakewharton.rxbinding4:rxbinding-core:$versions.rx_binding"
+rx_binding.recyclerview = "com.jakewharton.rxbinding4:rxbinding-recyclerview:$versions.rx_binding"
+rx_binding.swiperefreshlayout = "com.jakewharton.rxbinding4:rxbinding-swiperefreshlayout:$versions.rx_binding"
+deps.rx_binding = rx_binding
 
 ext.deps = deps
 

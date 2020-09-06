@@ -4,4 +4,9 @@
     <!-- Strings used for fragments for navigation -->
 
     <string name="main_title">Weather Crane</string>
+    <string name="city">City</string>
+    <string name="submit">Submit</string>
+    <string name="weather">Weather</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="settings">Settings</string>
 </resources>

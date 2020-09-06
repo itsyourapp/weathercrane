@@ -1,6 +1,7 @@
-package app.itsyour.weathercrane
+package app.itsyour.weathercrane.service.openweathermap
 
-import app.itsyour.weathercrane.service.WeatherService
+import app.itsyour.weathercrane.service.openweathermap.OpenWeatherMap.APP_ID_KEY
+import app.itsyour.weathercrane.service.openweathermap.OpenWeatherMap.APP_ID_VALUE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,12 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 import javax.inject.Singleton
 
-
 @InstallIn(ApplicationComponent::class)
 @Module
-class AppModule {
-    val APP_ID_KEY = "appid"
-    val APP_ID_VALUE = "7c8b5c9429e2507f8d21a248c577ba7b"
+class OpenWeatherModule {
 
     @Singleton
     @Provides
@@ -58,12 +56,12 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideWeatherService(httpClient: OkHttpClient): WeatherService =
+    fun provideWeatherService(httpClient: OkHttpClient): OpenWeatherMapService =
         Retrofit.Builder()
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(httpClient)
             .build()
-            .create(WeatherService::class.java)
+            .create(OpenWeatherMapService::class.java)
 }

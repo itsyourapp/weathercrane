@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".main.MainActivity"
+            android:name="app.itsyour.weathercrane.feature.main.MainActivity"
             android:label="@string/main_title"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

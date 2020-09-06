@@ -1,4 +1,4 @@
-package app.itsyour.weathercrane.service.response
+package app.itsyour.weathercrane.service.openweathermap.response
 
 data class Weather(
     val description: String,

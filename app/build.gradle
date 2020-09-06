@@ -4,6 +4,11 @@ apply plugin: 'kotlin-allopen'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.protobuf'
+
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 
 // Allows classes to be automatically extended for mocking purposes.
 allOpen {
@@ -15,7 +20,9 @@ android {
     buildToolsVersion build_versions.build_tools
     defaultConfig {
         applicationId "app.itsyour.weathercrane"
+        buildConfigField("String", "OPEN_WEATHER_APP_ID", apikeyProperties['OPEN_WEATHER_APP_ID'])
         minSdkVersion build_versions.min_sdk
+        multiDexEnabled true
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
@@ -34,25 +41,40 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    sourceSets {
+        main.java.srcDirs += "${protobuf.generatedFilesBaseDir}/main/javalite"
+    }
 }
 
 dependencies {
     implementation deps.app_compat
     implementation deps.constraint_layout
     implementation deps.core_ktx
+    implementation deps.datastore.pref
+    implementation deps.datastore.proto
     implementation deps.hilt.android
     implementation deps.hilt_viewmodel.lifecycle
     implementation deps.kotlin.stdlib
     implementation deps.material_components
+    implementation deps.multidex
     implementation deps.navigation.navigation_fragment_ktx
     implementation deps.navigation.navigation_ui_ktx
+    implementation deps.preferences_ktx
+    implementation deps.protobuf.lite
     implementation deps.retrofit.adapter
     implementation deps.retrofit.gson
     implementation deps.retrofit.logger
     implementation deps.retrofit.runtime
+    implementation deps.rx_binding.rx
+    implementation deps.rx_binding.core
+    implementation deps.rx_binding.recyclerview
+    implementation deps.rx_binding.swiperefreshlayout
+    implementation deps.rx_preferences
     implementation deps.rx.rxjava3
     implementation deps.rx.rxkotlin
+    implementation deps.swipe_refresh
     implementation deps.timber
+    implementation deps.viewmodel_ktx
 
     kapt deps.hilt.compiler
     kapt deps.hilt_viewmodel.compiler
@@ -67,4 +89,27 @@ dependencies {
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
     androidTestImplementation deps.hilt_testing.hilt_android_testing
+}
+
+protobuf {
+    protoc {
+        artifact = deps.protobuf.protoc
+    }
+    plugins {
+        javalite {
+            artifact = deps.protobuf.java_lite
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                // In most cases you don't need the full Java output
+                // if you use the lite output.
+                remove java
+            }
+            task.plugins {
+                javalite { }
+            }
+        }
+    }
 }
